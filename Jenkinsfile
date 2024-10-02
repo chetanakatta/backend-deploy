@@ -33,6 +33,33 @@ pipeline {
                 }
             }
         }
+
+        stage ('Init') {
+            steps {
+               sh """
+               cd terrform
+               terraform init
+               """      
+            }
+        }
+
+        stage ('Plan') {
+            steps {
+               sh """
+               cd terrform
+               terraform plan -var="app_version=${params.appVersion}"
+               """      
+            }
+        }
+
+        // stage ('Init') {
+        //     steps {
+        //        sh """
+        //        cd terrform
+        //        terraform deploy  -var="app_version=${params.appVersion}"
+        //        """      
+        //     }
+        // }
     }    
     post { //useful as alert for success or failure
 
