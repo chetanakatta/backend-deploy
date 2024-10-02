@@ -37,7 +37,7 @@ pipeline {
         stage ('Init') {
             steps {
                sh """
-               cd terrform
+               cd terraform
                terraform init
                """      
             }
@@ -46,7 +46,7 @@ pipeline {
         stage ('Plan') {
             steps {
                sh """
-               cd terrform
+               cd terraform
                terraform plan -var="app_version=${params.appVersion}"
                """      
             }
@@ -55,7 +55,7 @@ pipeline {
         // stage ('Init') {
         //     steps {
         //        sh """
-        //        cd terrform
+        //        cd terraform
         //        terraform deploy  -var="app_version=${params.appVersion}"
         //        """      
         //     }
