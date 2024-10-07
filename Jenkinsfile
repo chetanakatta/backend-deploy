@@ -52,14 +52,14 @@ pipeline {
             }
         }
 
-        // stage ('Init') {
-        //     steps {
-        //        sh """
-        //        cd terraform
-        //        terraform deploy  -var="app_version=${params.appVersion}"
-        //        """      
-        //     }
-        // }
+        stage ('Deply') {
+            steps {
+               sh """
+               cd terraform
+               terraform apply -auto-approve  -var="app_version=${params.appVersion}"
+               """      
+            }
+        }
     }    
     post { //useful as alert for success or failure
 
